@@ -1,8 +1,13 @@
 package com.codepath.android.lollipopexercise.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.codepath.android.lollipopexercise.R;
 import com.codepath.android.lollipopexercise.adapters.ContactsAdapter;
 import com.codepath.android.lollipopexercise.models.Contact;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -19,6 +25,7 @@ public class ContactsActivity extends AppCompatActivity {
     private RecyclerView rvContacts;
     private ContactsAdapter mAdapter;
     private List<Contact> contacts;
+    private String content_added = "Content added";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +70,20 @@ public class ContactsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onComposeAction(MenuItem mI) {
+        contacts.add(0, Contact.getRandomContact(this));
+        View.OnClickListener thisOnClickListener = new View.OnClickListener() {
+            public void onClick(View view) {
+                Log.i("undo_button", "is this undoing");
+                contacts.remove(0);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        };
+        Snackbar.make(rvContacts, content_added, Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, thisOnClickListener).setActionTextColor(Color.GREEN).show();
+        mAdapter.notifyDataSetChanged();
     }
 }

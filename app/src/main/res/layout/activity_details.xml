@@ -1,44 +1,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rldetailsContainer"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:elevation="99dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_call"
+            app:fabSize="normal"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/ivProfile"
-        android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/contact_detail_image_height" />
+        android:layout_height="@dimen/contact_detail_image_height"
+        android:scaleType="centerCrop"
+        android:transitionName="profile" />
 
     <RelativeLayout
         android:id="@+id/rlInfo"
-        android:layout_below="@+id/ivProfile"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfile"
+        android:layout_alignParentBottom="false"
+        android:gravity="bottom">
 
         <View
             android:id="@+id/vPalette"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/contact_text_size"
-            android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/contact_text_size" />
+
+        <TextView
             android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tvName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/contact_details_phone_margin_top"
             android:fontFamily="sans-serif-light"
-            android:textSize="@dimen/contact_text_size"
             android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/contact_text_size" />
     </RelativeLayout>
+
 </RelativeLayout>
 
